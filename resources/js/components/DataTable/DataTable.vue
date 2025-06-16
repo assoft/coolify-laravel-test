@@ -75,36 +75,26 @@ watch(filterValue, (newValue) => {
 <template>
     <div>
         <div v-if="props.filterableColumnId" class="flex items-center py-4">
-            <Input
-                :placeholder="`Filter ${String(props.filterableColumnId)}...`"
-                class="max-w-sm"
-                v-model="table.getColumn(props.filterableColumnId as string)?.getFilterValue().value"
-            />
+            <!--
+            <Input :placeholder="`Filter ${String(props.filterableColumnId)}...`" class="max-w-sm"
+                v-model="table.getColumn(props.filterableColumnId as string).getFilterValue().value" />
+            -->
         </div>
 
         <div class="rounded-md border">
             <Table>
                 <TableHeader>
-                    <TableRow
-                        v-for="headerGroup in table.getHeaderGroups()"
-                        :key="headerGroup.id"
-                    >
+                    <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
                         <TableHead v-for="header in headerGroup.headers" :key="header.id">
-                            <FlexRender
-                                v-if="!header.isPlaceholder"
-                                :render="header.column.columnDef.header"
-                                :props="header.getContext()"
-                            />
+                            <FlexRender v-if="!header.isPlaceholder" :render="header.column.columnDef.header"
+                                :props="header.getContext()" />
                         </TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     <template v-if="table.getRowModel().rows?.length">
-                        <TableRow
-                            v-for="row in table.getRowModel().rows"
-                            :key="row.id"
-                            :data-state="row.getIsSelected() && 'selected'"
-                        >
+                        <TableRow v-for="row in table.getRowModel().rows" :key="row.id"
+                            :data-state="row.getIsSelected() && 'selected'">
                             <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
                                 <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
                             </TableCell>
@@ -122,20 +112,10 @@ watch(filterValue, (newValue) => {
         </div>
 
         <div class="flex items-center justify-end space-x-2 py-4">
-            <Button
-                variant="outline"
-                size="sm"
-                :disabled="!table.getCanPreviousPage()"
-                @click="table.previousPage()"
-            >
+            <Button variant="outline" size="sm" :disabled="!table.getCanPreviousPage()" @click="table.previousPage()">
                 Previous
             </Button>
-            <Button
-                variant="outline"
-                size="sm"
-                :disabled="!table.getCanNextPage()"
-                @click="table.nextPage()"
-            >
+            <Button variant="outline" size="sm" :disabled="!table.getCanNextPage()" @click="table.nextPage()">
                 Next
             </Button>
         </div>
