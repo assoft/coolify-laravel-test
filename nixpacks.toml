@@ -13,13 +13,6 @@ cmds = [
     "...",
 ]
 
-[phases.postbuild]
-cmds = [
-    "php artisan migrate --force",
-    "php artisan view:clear",
-    "php artisan cache:clear",
-]
-
 [start]
 cmd = '/assets/start.sh'
 
