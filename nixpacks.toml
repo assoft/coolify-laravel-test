@@ -8,6 +8,8 @@ cmds = [
     "cp /assets/supervisord.conf /etc/supervisord.conf",
     "chmod +x /assets/start.sh",
     "...",
+    "php artisan migrate --force",
+    "php artisan optimize:clear",
 ]
 
 [start]
