@@ -13,7 +13,7 @@ cmds = [
     "cp /assets/worker-*.conf /etc/supervisor/conf.d/",
     "cp /assets/supervisord.conf /etc/supervisord.conf",
     "chmod +x /assets/start.sh",
-    "php artisan optimize:clear",
+
 ]
 
 [start]
@@ -22,6 +22,9 @@ cmd = '/assets/start.sh'
 [staticAssets]
 "start.sh" = '''
 #!/bin/bash
+
+echo 'test\n'
+echo $(pwd)\n
 
 # Transform the nginx configuration
 node /assets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
