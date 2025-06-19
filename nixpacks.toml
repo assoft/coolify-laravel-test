@@ -9,8 +9,8 @@ nixPkgs = [
 
 [phases.build]
 cmds = [
-    # "composer install --ignore-platform-reqs",
-    # "pnpm i --frozen-lockfile",
+    "composer install --ignore-platform-reqs",
+    "pnpm i --frozen-lockfile",
     "chmod -R 775 /app/storage /app/bootstrap/cache",
     "chown -R www-data:www-data /app/storage /app/bootstrap/cache",
     "mkdir -p /etc/supervisor/conf.d/",
