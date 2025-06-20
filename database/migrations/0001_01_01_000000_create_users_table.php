@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean("is_business")->default(false);
-            $table->foreignIdFor(\App\Models\Company::class)->nullable()->constrained()->nullOnDelete();
+            $table->unsignedBigInteger("company_id")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
