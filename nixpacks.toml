@@ -23,8 +23,10 @@ cmd = '/assets/start.sh'
 "start.sh" = '''
 #!/bin/bash
 
-echo 'test\n'
-echo $(pwd)\n
+# Coolify tarafından bağlanan kalıcı disklerin (volumes) sahipliğini
+# çalışma zamanında (runtime) doğru kullanıcıya (www-data) ata.
+# Bu, "directory must be writable" hatasını önler.
+chown -R www-data:www-data /app/storage /app/bootstrap/cache
 
 # Transform the nginx configuration
 node /assets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
